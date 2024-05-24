@@ -1,21 +1,15 @@
-<!-- index.php -->
 <?php
-// Inclure le fichier de configuration si nécessaire
-// include 'config.php';
+require 'Router.php';
+require 'src/Controllers/AboutController.php'; // Assure-toi d'inclure tous tes contrôleurs ici
 
-// Inclure le fichier de header
-include 'src/View/header.php';
-?>
+$router = new Router();
 
-<main>
-    <h2>Page d'accueil</h2>
-    <p>Bienvenue sur la page d'accueil de mon site de randonnée.</p>
-</main>
+// Ajouter des routes ici
+$router->addRoute('#^/$#', 'HomeController', 'index');
+$router->addRoute('#^/about$#', 'AboutController', 'index');
 
-<!-- Inclure le fichier de footer si nécessaire -->
-<?php
-include 'src/View/footer.php';
-?>
+// Récupérer l'URL demandée
+$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
 
-</body>
-</html>
+// Dispatcher l'URL
+$router->dispatch($url);
