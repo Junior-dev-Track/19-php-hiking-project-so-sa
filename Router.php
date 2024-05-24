@@ -1,22 +1,21 @@
 <?php
-
 class Router {
     private $routes = [];
 
-    public function addRoute($pattern, $controller, $method) {
-        $this->routes[$pattern] = ['controller' => $controller, 'method' => $method];
+    public function add($route, $handler) {
+        $this->routes[$route] = $handler;
     }
 
     public function dispatch($url) {
-        foreach ($this->routes as $pattern => $route) {
-            if (preg_match($pattern, $url, $matches)) {
-                $controllerName = $route['controller'];
-                $methodName = $route['method'];
-                $controller = new $controllerName();
-                return $controller->$methodName();
-            }
+        if (array_key_exists($url, $this->routes)) {
+            $handler = $this->routes[$url];
+            list($controller, $action) = explode('@', $handler);
+            require_once __DIR__ . "/src/Controllers/$controller.php";
+            $controller = new $controller;
+            $controller->$action();
+        } else {
+            echo "404 Not Found";
         }
-        // Si aucune route ne correspond, on peut gérer l'erreur ici
-        echo "404 Not Found";
     }
 }
+?>

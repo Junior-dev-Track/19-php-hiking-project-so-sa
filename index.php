@@ -1,15 +1,22 @@
 <?php
-require 'Router.php';
-require 'src/Controllers/AboutController.php'; // Assure-toi d'inclure tous tes contrôleurs ici
+// Inclure le header
+require_once __DIR__ . '/src/View/header.php';
 
+require_once __DIR__ . '/Router.php';
+require_once __DIR__ . '/src/Controllers/HomeController.php';
+require_once __DIR__ . '/src/Controllers/HikeController.php';
+
+// Initialiser le routeur
 $router = new Router();
 
-// Ajouter des routes ici
-$router->addRoute('#^/$#', 'HomeController', 'index');
-$router->addRoute('#^/about$#', 'AboutController', 'index');
+// Définir les routes
+$router->add('/', 'HomeController@index');
+$router->add('/about', 'HomeController@about');
+$router->add('/hikes', 'HikeController@list');
 
-// Récupérer l'URL demandée
-$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+// Démarrer le routage
+$router->dispatch(isset($_GET['url']) ? $_GET['url'] : '/');
 
-// Dispatcher l'URL
-$router->dispatch($url);
+// Inclure le footer
+require_once __DIR__ . '/src/View/footer.php';
+?>
