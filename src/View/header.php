@@ -8,10 +8,13 @@
 </head>
 <body>
     <header>
+        <h1>So&Sam</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="Accueil.php">Accueil</a></li>
+                <li><a href="page1.php">Randonnées</a></li>
+                <li><a href="page2.php">Utilisateurs</a></li>
+                <li><a href="page3.php">Tags</a></li>
             </ul>
         </nav>
     </header>
