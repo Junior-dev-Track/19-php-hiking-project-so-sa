@@ -13,9 +13,9 @@
         <nav>
             <ul>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="page1.php">Randonnées</a></li>
-                <li><a href="page2.php">Utilisateurs</a></li>
-                <li><a href="page3.php">Tags</a></li>
+                <li><a href="src/View/page1.php">Randonnées</a></li>
+                <li><a href="src/View/page2.php">Utilisateurs</a></li>
+                <li><a href="src/View/page3.php">Tags</a></li>
             </ul>
         </nav>
     </header>

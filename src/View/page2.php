@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>page1</p>
+    <p>page2</p>
 </body>
 </html>
