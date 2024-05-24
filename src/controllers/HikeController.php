@@ -1,15 +1,21 @@
 <?php
 namespace App\Controllers;
 
-require_once 'src/models/Hike.php';
-require_once 'src/views/HikeView.php';
+use App\Models\Hike;
 
 class HikeController {
     public function list() {
-        $hikeModel = new \App\Models\Hike();
+        $hikeModel = new Hike();
         $hikes = $hikeModel->getAllHikes();
-        $hikeView = new \App\Views\HikeView();
+        $hikeView = new \App\views\HikeView();
         $hikeView->displayHikes($hikes);
+    }
+
+    public function show($id) {
+        $hikeModel = new Hike();
+        $hike = $hikeModel->getHikeById($id);
+        $hikeView = new \App\views\HikeView();
+        $hikeView->displayHike($hike);
     }
 
     public function about() {

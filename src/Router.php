@@ -1,16 +1,21 @@
 <?php
 namespace App;
 
-require_once 'src/controllers/HikeController.php';
+use App\Controllers\HikeController;
 
 class Router {
     public function handleRequest($uri) {
         $path = trim($uri, '/');
-        if ($path == 'about') {
-            $controller = new Controllers\HikeController();
+        $pathParts = explode('/', $path);
+
+        if ($pathParts[0] == 'about') {
+            $controller = new HikeController();
             $controller->about();
+        } elseif ($pathParts[0] == 'hike' && isset($pathParts[1])) {
+            $controller = new HikeController();
+            $controller->show($pathParts[1]);
         } else {
-            $controller = new Controllers\HikeController();
+            $controller = new HikeController();
             $controller->list();
         }
     }
