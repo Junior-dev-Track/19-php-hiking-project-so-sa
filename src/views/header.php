@@ -11,8 +11,8 @@
         <nav>
             <ul>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
+                <li><a href="src/views/login.php">Login</a></li>
+                <li><a href="src/views/register.php">Register</a></li>
             </ul>
         </nav>
     </header>

@@ -1,7 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'config/database.php';
-
+include('src/views/header.php');
 use Models\Hike;
 use Controllers\HikeController;
 use Src\Router;
