@@ -1,24 +1,23 @@
 <?php
-namespace App\Controllers;
+namespace Controllers;
 
-use App\Models\Hike;
+use Models\Hike;
+use Views\HikeView;
 
 class HikeController {
-    public function list() {
-        $hikeModel = new Hike();
-        $hikes = $hikeModel->getAllHikes();
-        $hikeView = new \App\views\HikeView();
-        $hikeView->displayHikes($hikes);
+    public function listHikes() {
+        $hikes = Hike::getAllHikes();
+        HikeView::displayHikes($hikes);
     }
 
-    public function show($id) {
-        $hikeModel = new Hike();
-        $hike = $hikeModel->getHikeById($id);
-        $hikeView = new \App\views\HikeView();
-        $hikeView->displayHike($hike);
+    public function showHike($id) {
+        $hike = Hike::getHikeById($id);
+        HikeView::displayHikeDetails($hike);
     }
 
-    public function about() {
-        // Gérer la page "about"
+    public function listHikesByTag($tag) {
+        $hikes = Hike::getHikesByTag($tag);
+        HikeView::displayHikes($hikes);
     }
 }
+?>

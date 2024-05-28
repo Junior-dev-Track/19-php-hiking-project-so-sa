@@ -1,22 +1,20 @@
 <?php
-namespace App;
+namespace Src;
 
-use App\Controllers\HikeController;
+use Controllers\HikeController;
 
 class Router {
     public function handleRequest($uri) {
-        $path = trim($uri, '/');
-        $pathParts = explode('/', $path);
-
-        if ($pathParts[0] == 'about') {
-            $controller = new HikeController();
-            $controller->about();
-        } elseif ($pathParts[0] == 'hike' && isset($pathParts[1])) {
-            $controller = new HikeController();
-            $controller->show($pathParts[1]);
+        $controller = new HikeController();
+        if ($uri == '/') {
+            $controller->listHikes();
+        } elseif (preg_match('/^\/hike\/(\d+)$/', $uri, $matches)) {
+            $controller->showHike($matches[1]);
+        } elseif (preg_match('/^\/tag\/(.+)$/', $uri, $matches)) {
+            $controller->listHikesByTag($matches[1]);
         } else {
-            $controller = new HikeController();
-            $controller->list();
+            echo "404 Not Found";
         }
     }
 }
+?>

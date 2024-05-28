@@ -1,19 +1,25 @@
 <?php
-namespace App\Views;
+namespace Views;
 
 class HikeView {
-    public function displayHikes($hikes) {
+    public static function displayHikes($hikes) {
+        echo "<h1>List of Hikes</h1>";
+        echo "<ul>";
         foreach ($hikes as $hike) {
-            echo "<h2><a href='/hike/" . $hike['id'] . "'>" . htmlspecialchars($hike['name']) . "</a></h2>";
-            echo "<p>Tags: " . htmlspecialchars($hike['tags']) . "</p>";
+            echo "<li><a href='/hike/{$hike['id']}'>{$hike['name']}</a> - Distance: {$hike['distance']} km, Duration: {$hike['duration']} hours, Elevation Gain: {$hike['elevation_gain']} m</li>";
         }
+        echo "</ul>";
     }
 
-    public function displayHike($hike) {
-        echo "<h1>" . htmlspecialchars($hike['name']) . "</h1>";
-        echo "<p>Created by: " . htmlspecialchars($hike['creator']) . "</p>";
-        echo "<p>Tags: " . htmlspecialchars($hike['tags']) . "</p>";
-        echo "<p>Description: " . htmlspecialchars($hike['description']) . "</p>";
+    public static function displayHikeDetails($hike) {
+        echo "<h1>{$hike['name']}</h1>";
+        echo "<p>Distance: {$hike['distance']} km</p>";
+        echo "<p>Duration: {$hike['duration']} hours</p>";
+        echo "<p>Elevation Gain: {$hike['elevation_gain']} m</p>";
+        echo "<p>Description: {$hike['description']}</p>";
+        echo "<p>Created by: {$hike['creator_name']}</p>";
+        echo "<p>Tags: " . implode(", ", $hike['tags']) . "</p>";
         echo "<a href='/'>Back to list</a>";
     }
 }
+?>
