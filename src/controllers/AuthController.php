@@ -1,9 +1,9 @@
 <?php
 // src/controllers/AuthController.php
 
-namespace Src\Controllers;
+namespace Controllers;
 
-use Src\Models\User;
+use Models\User;
 use Core\Controller;
 
 class AuthController extends Controller {
@@ -20,10 +20,10 @@ class AuthController extends Controller {
                 $_SESSION['username'] = $loggedInUser['username'];
                 header("Location: /dashboard");
             } else {
-                $this->view('auth/login', ['error' => 'Invalid login credentials']);
+                $this->view('login', ['error' => 'Invalid login credentials']);
             }
         } else {
-            $this->view('auth/login');
+            $this->view('login');
         }
     }
 
@@ -37,11 +37,13 @@ class AuthController extends Controller {
             if ($user->register()) {
                 header("Location: /login");
             } else {
-                $this->view('auth/register', ['error' => 'Registration failed']);
+                $this->view('register', ['error' => 'Registration failed']);
             }
         } else {
-            $this->view('auth/register');
+            $this->view('register');
         }
     }
 }
 ?>
+
+

@@ -1,7 +1,7 @@
 <?php
 // src/models/User.php
 
-namespace Src\Models;
+namespace Models;
 
 use PDO;
 use Config\Database;
@@ -44,5 +44,7 @@ class User {
     }
 }
 ?>
+
+
 
 

@@ -4,6 +4,7 @@
             "Config\\": "config/",
             "Controllers\\": "src/controllers/",
             "Models\\": "src/models/",
+            "Core\\": "src/core/",
             "Views\\": "src/views/",
             "Src\\": "src/"
         }
