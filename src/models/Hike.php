@@ -7,12 +7,13 @@ use Config\Database;
 class Hike {
     public static function getAllHikes() {
         $db = Database::getInstance();
-        $stmt = $db->query("SELECT id, name, distance, duration, elevation_gain, created_at FROM hikes");
+        $stmt = $db->query("SELECT hikes.id, hikes.name, hikes.distance, hikes.duration, hikes.elevation_gain, hikes.created_at, tags.name as tag
+                            FROM hikes
+                            LEFT JOIN tags ON hikes.tag_id = tags.id");
         $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // On ajoute des tags factices pour l'exemple
         foreach ($hikes as &$hike) {
-            $hike['tags'] = ['Mountain', 'Forest']; // Ajouter des tags en dur pour chaque randonnée
+            $hike['tags'] = $hike['tag'] ? [$hike['tag']] : [];
         }
 
         return $hikes;
@@ -20,12 +21,15 @@ class Hike {
 
     public static function getHikeById($id) {
         $db = Database::getInstance();
-        $stmt = $db->prepare("SELECT * FROM hikes WHERE id = ?");
+        $stmt = $db->prepare("SELECT hikes.*, tags.name as tag
+                              FROM hikes
+                              LEFT JOIN tags ON hikes.tag_id = tags.id
+                              WHERE hikes.id = ?");
         $stmt->execute([$id]);
         $hike = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($hike) {
-            $hike['tags'] = ['Mountain', 'Forest']; // Ajouter des tags en dur pour l'exemple
+            $hike['tags'] = $hike['tag'] ? [$hike['tag']] : [];
         }
 
         return $hike;
@@ -33,18 +37,15 @@ class Hike {
 
     public static function getHikesByTag($tag) {
         $db = Database::getInstance();
-        $stmt = $db->prepare("SELECT id, name, distance, duration, elevation_gain, created_at FROM hikes");
-        $stmt->execute();
+        $stmt = $db->prepare("SELECT hikes.id, hikes.name, hikes.distance, hikes.duration, hikes.elevation_gain, hikes.created_at, tags.name as tag
+                              FROM hikes
+                              LEFT JOIN tags ON hikes.tag_id = tags.id
+                              WHERE tags.name = ?");
+        $stmt->execute([$tag]);
         $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Filtrer les randonnées par tag
-        $hikes = array_filter($hikes, function($hike) use ($tag) {
-            return in_array($tag, ['Mountain', 'Forest']); // Vérifier si le tag est présent dans la liste de tags factices
-        });
-
-        // Ajouter les tags en dur pour chaque randonnée filtrée
         foreach ($hikes as &$hike) {
-            $hike['tags'] = ['Mountain', 'Forest']; // Ajouter des tags en dur pour chaque randonnée
+            $hike['tags'] = $hike['tag'] ? [$hike['tag']] : [];
         }
 
         return $hikes;
