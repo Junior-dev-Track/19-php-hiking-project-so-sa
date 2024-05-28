@@ -18,5 +18,8 @@
         <input type="password" id="password" name="password" required><br>
         <button type="submit">Login</button>
     </form>
+    <?php if (!empty($data['error'])): ?>
+        <p><?php echo $data['error']; ?></p>
+    <?php endif; ?>
 </body>
 </html>
