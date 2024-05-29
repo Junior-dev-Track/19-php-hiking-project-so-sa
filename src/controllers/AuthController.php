@@ -13,7 +13,10 @@ class AuthController extends ResultController {
             $user->email = $_POST['email'];
             $user->password = $_POST['password']; // On garde le mot de passe en clair pour la vérification
 
-            $loggedInUser = $user->login();
+            /**
+             * @return array|bool The logged in user data or false if login fails.
+             */
+            $loggedInUser = $user->login() ?? null;
             if ($loggedInUser) {
                 session_start();
                 $_SESSION['user_id'] = $loggedInUser['id'];

@@ -23,4 +23,4 @@ class HikeController {
         HikeView::displayHikes($hikes);
     }
 }
-?>
+
