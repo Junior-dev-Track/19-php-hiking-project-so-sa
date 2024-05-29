@@ -7,20 +7,17 @@ use Views\HikeView;
 class HikeController {
     public function listHikes() {
         $hikes = Hike::getAllHikes();
-        include 'src/views/header.php';
-        HikeView::displayHikes($hikes);
+        HikeView::displayHikes($hikes);  // Ne pas inclure le header ici
     }
 
     public function showHike($id) {
         $hike = Hike::getHikeById($id);
-        include 'src/views/header.php';
-        HikeView::displayHikeDetails($hike);
+        HikeView::displayHikeDetails($hike);  // Ne pas inclure le header ici
     }
 
     public function listHikesByTag($tag) {
         $hikes = Hike::getHikesByTag($tag);
-        include 'src/views/header.php';
-        HikeView::displayHikes($hikes);
+        HikeView::displayHikes($hikes);  // Ne pas inclure le header ici
     }
 }
 ?>

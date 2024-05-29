@@ -14,7 +14,6 @@
                 <li><a href="/index.php">Accueil</a></li>
                 <li><a href="/src/views/login.php">Login</a></li>
                 <li><a href="/src/views/register.php">Register</a></li>
-                <li><a href="/src/views/logout.php">Logout</a></li> <!-- Ajout du bouton Logout -->
             </ul>
         </nav>
     </header>

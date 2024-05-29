@@ -1,8 +1,24 @@
 <?php
 namespace Views;
 
+require_once __DIR__ . '/../../config/config.php';  // Inclure le fichier de configuration global
+
 class HikeView {
     public static function displayHikes($hikes) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        ob_start();  // Démarre la capture de sortie pour éviter les problèmes de headers multiples
+
+        if (isset($_SESSION['user_id'])) {
+            $headerFile = ROOT . '/src/views/headerAccount.php';
+        } else {
+            $headerFile = ROOT . '/src/views/header.php';
+        }
+
+        include $headerFile;
+        ob_end_flush();  // Envoie la sortie capturée
+
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -36,6 +52,20 @@ class HikeView {
     }
 
     public static function displayHikeDetails($hike) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        ob_start();  // Démarre la capture de sortie pour éviter les problèmes de headers multiples
+
+        if (isset($_SESSION['user_id'])) {
+            $headerFile = ROOT . '/src/views/headerAccount.php';
+        } else {
+            $headerFile = ROOT . '/src/views/header.php';
+        }
+
+        include $headerFile;
+        ob_end_flush();  // Envoie la sortie capturée
+
         ?>
         <!DOCTYPE html>
         <html lang="en">
