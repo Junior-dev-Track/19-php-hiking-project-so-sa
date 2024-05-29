@@ -2,6 +2,7 @@
 
 /* Styles globaux */
 body {
+    
     font-family: 'Montserrat', sans-serif;
     background-color: #f4f4f9; /* Couleur de fond légère */
     color: #333; /* Couleur du texte */
@@ -27,6 +28,7 @@ ul {
 
 /* Styles pour les items de liste */
 li {
+    cursor: pointer;
     background-color: #fff;
     margin: 10px 0;
     padding: 15px;

@@ -51,4 +51,4 @@ class Hike {
         return $hikes;
     }
 }
-?>
+

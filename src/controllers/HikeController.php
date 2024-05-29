@@ -20,4 +20,4 @@ class HikeController {
         HikeView::displayHikes($hikes);  // Ne pas inclure le header ici
     }
 }
-?>
+

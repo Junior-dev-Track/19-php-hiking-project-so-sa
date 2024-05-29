@@ -93,4 +93,4 @@ class HikeView {
         <?php
     }
 }
-?>
+
