@@ -3,8 +3,18 @@
 
 namespace Controllers;
 
+
+
 use Models\User;
 use Controllers\ResultController;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require 'vendor/autoload.php';
+;
+
+require './config/Mail.php';
 
 class AuthController extends ResultController {
     public function login() {
@@ -14,9 +24,6 @@ class AuthController extends ResultController {
             $user->email = $_POST['email'];
             $user->password = $_POST['password']; // On garde le mot de passe en clair pour la vérification
 
-            /**
-             * @return array|bool The logged in user data or false if login fails.
-             */
             $loggedInUser = $user->login() ?? null;
             if ($loggedInUser) {
                 $_SESSION['user_id'] = $loggedInUser['id'];
@@ -42,6 +49,8 @@ class AuthController extends ResultController {
             $user->password = $_POST['password']; // On garde le mot de passe en clair pour le hachage
 
             if ($user->register()) {
+                // Appeler la méthode pour envoyer l'email de confirmation
+                $this->sendConfirmationEmail($user->email, $user->firstname, $user->lastname);
                 header("Location: /login");
                 exit(); // Assurez-vous de sortir après la redirection
             } else {

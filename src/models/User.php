@@ -5,7 +5,8 @@ namespace Models;
 
 use PDO;
 use Config\Database;
-
+use PDOException;
+use Exception;
 class User {
     private $conn;
     private $table_name = "users";
@@ -29,9 +30,20 @@ class User {
         $stmt->bindParam(':lastname', $this->lastname);
         $stmt->bindParam(':nickname', $this->nickname);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password_hash', password_hash($this->password, PASSWORD_BCRYPT));
+        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+        $stmt->bindParam(':password_hash', $password_hash);
 
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            if ($e->getCode() == '23000' && strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                throw new Exception("Nickname already exists.", 0, $e);
+            } else {
+                throw $e;
+            }
+            
+            
+        }
     }
 
     public function login() {
@@ -47,4 +59,4 @@ class User {
         return false;
     }
 }
-?>
+
