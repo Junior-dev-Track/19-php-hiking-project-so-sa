@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/public/css/header.css"> <!-- Lien vers votre fichier CSS -->
 </head>
 <body>
-    <header>
+    <header class="header-nav">
         <h1>Bienvenue sur notre site de randonnées</h1>
         <nav>
             <ul>

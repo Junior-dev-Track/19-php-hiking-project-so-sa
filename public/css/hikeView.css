@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Styles globaux */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f9; /* Couleur de fond légère */
+    color: #333; /* Couleur du texte */
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles pour les titres */
+h1 {
+    font-size: 28px;
+    color: #444;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styles pour les listes */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Styles pour les items de liste */
+li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Styles pour les liens */
+a {
+    color: #1a73e8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Styles pour les paragraphes */
+p {
+    margin: 5px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styles pour les boutons */
+button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles spécifiques pour les boutons dans le header */
+.header-nav ul li a {
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header-nav ul li a:hover {
+    background-color: #0056b3;
+    color: white;
+}

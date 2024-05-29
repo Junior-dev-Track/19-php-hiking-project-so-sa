@@ -33,11 +33,12 @@ header nav ul li a {
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Ajoute un fond semi-transparent pour plus de visibilité */
     transition: background-color 0.3s, color 0.3s;
 }
 
 header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3); /* Augmente la transparence au survol */
     color: #fff;
 }
 
