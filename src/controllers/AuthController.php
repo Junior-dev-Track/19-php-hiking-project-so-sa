@@ -68,5 +68,45 @@ class AuthController extends ResultController {
         header("Location: /index.php");
         exit();
     }
+
+    private function sendConfirmationEmail($email, $firstname, $lastname)
+    {
+        // Charger la configuration SMTP
+        $config = require './config/mail.php';
+
+        // Créer une instance de PHPMailer
+        $mail = new PHPMailer(true);
+
+        try {
+            // Activer le débogage SMTP
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Niveau de débogage (0 = off, 1 = client, 2 = client et serveur)
+            $mail->Debugoutput = 'html'; // Sortie du débogage
+
+            // Configuration du serveur SMTP
+            $mail->isSMTP();
+            $mail->Host = $config['host'];
+            $mail->SMTPAuth = $config['smtp_auth'];
+            $mail->Username = $config['username'];
+            $mail->Password = $config['password'];
+            $mail->SMTPSecure = $config['smtp_secure'];
+            $mail->Port = $config['port'];
+
+            // Paramètres de l'email
+            $mail->setFrom($config['from_email'], $config['from_name']);
+            $mail->addAddress($email, $firstname . ' ' . $lastname); // Adresse de l'utilisateur
+
+            // Contenu de l'email
+            $mail->isHTML(true);
+            $mail->Subject = 'Inscription réussie'; // Sujet de l'email
+            $mail->Body = 'Merci de vous être inscrit sur notre site !'; // Corps de l'email en HTML
+            $mail->AltBody = 'Merci de vous être inscrit sur notre site !'; // Corps de l'email en texte brut
+
+            // Envoyer l'email
+            $mail->send();
+        } catch (Exception $e) {
+            // Log the error or handle it as needed
+            error_log("Le message n'a pas pu être envoyé. Erreur de Mailer : {$mail->ErrorInfo}");
+        }
+    }
 }
 ?>
