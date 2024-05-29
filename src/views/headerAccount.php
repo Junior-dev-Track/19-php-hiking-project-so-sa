@@ -4,7 +4,7 @@
     <nav>
         <ul>
             <li><a href="/index.php">Accueil</a></li>
-            <li><a href="/create">Créer une randonnée</a></li>
+            <li><a href="/src/views/addHike.php">Créer une randonnée</a></li>
             <li><a href="/src/views/logout.php">Logout</a></li>
         </ul>
     </nav>
