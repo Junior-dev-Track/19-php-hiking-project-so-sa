@@ -4,6 +4,8 @@ namespace Src;
 use Controllers\HikeController;
 use Controllers\AuthController;
 
+use Controllers\ResultController;
+
 class Router {
     public function handleRequest($uri) {
         if ($uri == '/' || $uri == '/index.php') {

@@ -6,6 +6,7 @@ namespace Models;
 use PDO;
 use Config\Database;
 
+
 class User {
     private $conn;
     private $table_name = "users";

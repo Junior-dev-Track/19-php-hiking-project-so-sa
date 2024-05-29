@@ -3,10 +3,14 @@
 
 namespace Controllers;
 
-use Models\User;
-use Core\Controller;
 
-class AuthController extends Controller {
+use Controllers\ResultController;
+
+use Models\User;
+
+
+
+class AuthController extends ResultController {
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = new User();
