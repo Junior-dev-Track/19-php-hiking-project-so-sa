@@ -16,14 +16,14 @@ class HikeView {
             session_start();
         }
 
-        // Header inclusion unique
+        // Inclusion unique du header
         if (isset($_SESSION['user_id'])) {
-            $headerFile = __DIR__ . '/headerAccount.php';
+            include_once __DIR__ . '/headerAccount.php';
         } else {
-            $headerFile = __DIR__ . '/header.php';
+            include_once __DIR__ . '/header.php';
         }
 
-        include $headerFile;
+        // Affichage de la liste des hikes
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -57,9 +57,47 @@ class HikeView {
         </html>
         <?php
     }
-}
 
-// Récupérer les randonnées et les afficher
-$hikes = \Views\HikeView::getHikes();
-\Views\HikeView::displayHikes($hikes);
+    public static function displayHike($hike) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Inclusion unique du header
+        if (isset($_SESSION['user_id'])) {
+            include_once __DIR__ . '/headerAccount.php';
+        } else {
+            include_once __DIR__ . '/header.php';
+        }
+
+        // Affichage des détails d'une randonnée
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title><?= htmlspecialchars($hike['name']) ?></title>
+            <link rel="stylesheet" href="/public/css/hikeView.css">
+        </head>
+        <body>
+            <h1><?= htmlspecialchars($hike['name']) ?></h1>
+            <p>Distance: <?= htmlspecialchars($hike['distance']) ?> km</p>
+            <p>Duration: <?= htmlspecialchars($hike['duration']) ?> hours</p>
+            <p>Elevation Gain: <?= htmlspecialchars($hike['elevation_gain']) ?> m</p>
+            <p>Description: <?= htmlspecialchars($hike['description']) ?></p>
+            <?php if (isset($hike['tags']) && is_array($hike['tags'])): ?>
+                <p>Tags: 
+                    <?php foreach ($hike['tags'] as $tag): ?>
+                        <a href="/tag/<?= htmlspecialchars($tag) ?>"><?= htmlspecialchars($tag) ?></a>
+                    <?php endforeach; ?>
+                </p>
+            <?php endif; ?>
+            <a href="/hike/edit/<?= htmlspecialchars($hike['id']) ?>">Edit</a> |
+            <a href="/hike/delete/<?= htmlspecialchars($hike['id']) ?>">Delete</a>
+        </body>
+        </html>
+        <?php
+    }
+}
 ?>
