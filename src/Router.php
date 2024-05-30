@@ -4,8 +4,6 @@ namespace Src;
 use Controllers\HikeController;
 use Controllers\AuthController;
 
-use Controllers\ResultController;
-
 class Router {
     public function handleRequest($uri) {
         if ($uri == '/' || $uri == '/index.php') {
@@ -14,6 +12,23 @@ class Router {
         } elseif (preg_match('/^\/hike\/(\d+)$/', $uri, $matches)) {
             $controller = new HikeController();
             $controller->showHike($matches[1]);
+        } elseif (preg_match('/^\/hike\/edit\/(\d+)$/', $uri, $matches)) {
+            $id = $matches[1];
+            $path = __DIR__ . '/views/editHike.php';
+            if (file_exists($path)) {
+                include $path;
+            } else {
+                echo "File not found: $path";
+            }
+        } elseif (preg_match('/^\/hike\/delete\/(\d+)$/', $uri, $matches)) {
+            $id = $matches[1];
+            echo "DEBUG: ID received in Router: $id"; // Ajout de débogage
+            $path = __DIR__ . '/views/deleteHike.php';
+            if (file_exists($path)) {
+                include $path;
+            } else {
+                echo "File not found: $path";
+            }
         } elseif (preg_match('/^\/tag\/(.+)$/', $uri, $matches)) {
             $controller = new HikeController();
             $controller->listHikesByTag($matches[1]);
@@ -36,5 +51,3 @@ class Router {
         }
     }
 }
-?>
-

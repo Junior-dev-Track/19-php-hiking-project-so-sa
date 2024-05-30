@@ -16,6 +16,7 @@ class HikeView {
             session_start();
         }
 
+        // Header inclusion unique
         if (isset($_SESSION['user_id'])) {
             $headerFile = __DIR__ . '/headerAccount.php';
         } else {
@@ -47,6 +48,8 @@ class HikeView {
                                 <a href="/tag/<?= htmlspecialchars($tag) ?>"><?= htmlspecialchars($tag) ?></a> 
                             <?php endforeach; ?>
                         <?php endif; ?>
+                        <a href="/hike/edit/<?= htmlspecialchars($hike['id']) ?>">Edit</a> |
+                        <a href="/hike/delete/<?= htmlspecialchars($hike['id']) ?>">Delete</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
