@@ -14,7 +14,8 @@ class Router {
             $controller->showHike($matches[1]);
         } elseif (preg_match('/^\/hike\/edit\/(\d+)$/', $uri, $matches)) {
             $id = $matches[1];
-            $path = __DIR__ . '/views/editHike.php';
+            $_GET['id'] = $id;  // Assurez-vous que l'ID est disponible dans $_GET
+            $path = __DIR__ . '/views/editHike.php';  // Correction du chemin
             if (file_exists($path)) {
                 include $path;
             } else {
@@ -22,8 +23,9 @@ class Router {
             }
         } elseif (preg_match('/^\/hike\/delete\/(\d+)$/', $uri, $matches)) {
             $id = $matches[1];
+            $_GET['id'] = $id;  // Assurez-vous que l'ID est disponible dans $_GET
             echo "DEBUG: ID received in Router: $id"; // Ajout de débogage
-            $path = __DIR__ . '/views/deleteHike.php';
+            $path = __DIR__ . '/views/deleteHike.php';  // Correction du chemin
             if (file_exists($path)) {
                 include $path;
             } else {
@@ -51,3 +53,4 @@ class Router {
         }
     }
 }
+?>

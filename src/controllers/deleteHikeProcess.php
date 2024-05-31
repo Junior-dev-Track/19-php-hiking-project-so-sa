@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$id]);
 
             echo "The hike has been deleted successfully!";
-            header('Location: ../views/HikeView.php');
+            header('Location: http://127.0.0.1:8000');
             exit();
         } catch (PDOException $e) {
             echo "Error deleting hike: " . $e->getMessage();
