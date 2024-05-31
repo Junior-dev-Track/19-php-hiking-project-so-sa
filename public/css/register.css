@@ -1,0 +1,24 @@
+.register-container{
+    
+    text-align: center;
+    margin-top: 30Px;
+    
+   
+}
+.register-form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input{
+    margin: 10px 0;
+}
+.title{
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+}

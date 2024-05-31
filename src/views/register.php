@@ -7,9 +7,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register</title>
+        <link rel="stylesheet" href="/public/css/register.css">
     </head>
     <body>
-        <h2>Register</h2>
+        <div class="register-container">
+        <h2 class="title">Register</h2>
+        <div class="form-container">
         <form action="/register" method="POST">
             <label for="firstname">First Name:</label>
             <input type="text" id="firstname" name="firstname" required><br>
@@ -23,6 +26,8 @@
             <input type="password" id="password" name="password" required><br>
             <button type="submit">Register</button>
         </form>
+        </div>
+        </div>
         <?php if (!empty($data['error'])): ?>
         <p><?php echo $data['error']; ?></p>
     <?php endif; ?>
