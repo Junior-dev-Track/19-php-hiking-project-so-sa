@@ -12,18 +12,6 @@ class HikeView {
     }
 
     public static function displayHikes($hikes) {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        // Inclusion unique du header
-        if (isset($_SESSION['user_id'])) {
-            include_once __DIR__ . '/headerAccount.php';
-        } else {
-            include_once __DIR__ . '/header.php';
-        }
-
-        // Affichage de la liste des hikes
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -34,6 +22,18 @@ class HikeView {
             <link rel="stylesheet" href="/public/css/hikeView.css">
         </head>
         <body>
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Inclusion unique du header
+        if (isset($_SESSION['user_id'])) {
+            include_once __DIR__ . '/headerAccount.php';
+        } else {
+            include_once __DIR__ . '/header.php';
+        }
+        ?>
             <h1>List of Hikes</h1>
             <ul>
                 <?php foreach ($hikes as $hike): ?>
@@ -59,18 +59,6 @@ class HikeView {
     }
 
     public static function displayHike($hike) {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        // Inclusion unique du header
-        if (isset($_SESSION['user_id'])) {
-            include_once __DIR__ . '/headerAccount.php';
-        } else {
-            include_once __DIR__ . '/header.php';
-        }
-
-        // Affichage des détails d'une randonnée
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -81,6 +69,18 @@ class HikeView {
             <link rel="stylesheet" href="/public/css/hikeView.css">
         </head>
         <body>
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Inclusion unique du header
+        if (isset($_SESSION['user_id'])) {
+            include_once __DIR__ . '/headerAccount.php';
+        } else {
+            include_once __DIR__ . '/header.php';
+        }
+        ?>
             <h1><?= htmlspecialchars($hike['name']) ?></h1>
             <p>Distance: <?= htmlspecialchars($hike['distance']) ?> km</p>
             <p>Duration: <?= htmlspecialchars($hike['duration']) ?> hours</p>

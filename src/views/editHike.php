@@ -10,13 +10,20 @@ if (!isset($_SESSION['user_id'])) {
 
 require __DIR__ . '/../../config/database.php';
 $pdo = \Config\Database::getInstance();
-$id = $_GET['id'];
+$id = $_GET['id'] ?? null;
+
+if ($id === null) {
+    echo "No ID provided.";
+    exit();
+}
+
 $sql = "SELECT * FROM hikes WHERE id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$id]);
 $hike = $stmt->fetch();
-if ($hike && $hike['user_id'] !== $_SESSION['user_id']) {
-    header('Location: /src/views/HikeView.php');
+
+if (!$hike) {
+    echo "Hike not found.";
     exit();
 }
 ?>
@@ -25,7 +32,7 @@ if ($hike && $hike['user_id'] !== $_SESSION['user_id']) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Hike</title>
-    <link rel="stylesheet" href="/public/css/hikeView.css">
+    <link rel="stylesheet" href="/public/css/formView.css">
 </head>
 <body>
     <h1>Edit Hike</h1>
@@ -38,6 +45,7 @@ if ($hike && $hike['user_id'] !== $_SESSION['user_id']) {
         <textarea name="description" required><?= htmlspecialchars($hike['description']) ?></textarea>
         <input type="text" name="tag_id" value="<?= htmlspecialchars($hike['tag_id']) ?>" required>
         <button type="submit">Update Hike</button>
+        <button type="button" onclick="window.location.href='http://127.0.0.1:8000'">Cancel</button>
     </form>
 </body>
 </html>

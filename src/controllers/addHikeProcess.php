@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$hike_name, $distance, $duration, $elevation_gain, $description, $tag_id, $timestamp, $timestamp]);
 
     echo "The hike has been added successfully!";
-    header('Location: ../views/HikeView.php');
+    header('Location: http://127.0.0.1:8000');
     exit();
 }
 ?>

@@ -1,4 +1,3 @@
-<!-- addHike.php -->
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -11,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Add Hike</title>
-    <link rel="stylesheet" href="/public/css/hikeView.css">
+    <link rel="stylesheet" href="/public/css/formView.css">
 </head>
 <body>
     <h1>Add a New Hike</h1>
